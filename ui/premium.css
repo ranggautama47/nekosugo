@@ -1,0 +1,227 @@
+/* premium.css */
+/* ========== MOBILE/DESKTOP VIEW SETTINGS ========== */
+.mobile-view {
+  display: none;
+  width: 100%;
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.desktop-view {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .desktop-view {
+    display: none !important;
+  }
+  .mobile-view {
+    display: flex !important;
+  }
+}
+
+.NekoSugoStream-font {
+  font-family: 'NekoSugoStream Sans', Arial, sans-serif;
+}
+
+.close-btn {
+  transition: transform 0.1s ease, color 0.1s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+  color: #dc2626 !important;
+}
+
+.small-image {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+}
+
+.plan-checkmark {
+  display: none;
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.plan-card.selected .plan-checkmark {
+  display: flex !important;
+  transform: scale(1);
+}
+
+.plan-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.plan-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.plan-card.selected {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.popular-tag {
+  background-color: #dc2626;
+  transition: all 0.3s ease;
+}
+
+.popular-tag:hover {
+  background-color: #2563eb;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+}
+
+.popular-tag.selected {
+  background-color: #2563eb;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+}
+
+.copy-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: #10b981;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+}
+
+.copy-toast.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.copy-toast.hide {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.mobile-plan-card.selected {
+  border: 2px solid #3B82F6;
+}
+
+
+@media (max-width: 767px) {
+  .mobile-plan-card {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
+    width: 120px;
+    min-height: 80px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .mobile-plan-card .popular-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 10px;
+  text-align: center;
+  padding: 2px 4px;
+  border-radius: 4px 4px 0 0;
+  background-color: #dc2626; /* Red color by default */
+  color: white;
+  z-index: 10;
+  transition: background-color 0.1s ease; /* Add smooth transition */
+}
+
+  .mobile-plan-card .popular-tag:hover {
+    background-color: #2563eb;
+  }
+
+  .mobile-plan-card .popular-tag.selected {
+    background-color: #2563eb;
+  }
+  
+.mobile-plan-card.selected .popular-tag {
+  background-color: #2563eb !important;
+}
+
+  .mobile-checkmark {
+    display: none;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 18px;
+    height: 18px;
+    background-color: #3B82F6;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+  }
+
+  .mobile-plan-card.selected .mobile-checkmark {
+    display: flex !important;
+  }
+
+  /* Pastikan icon check terlihat */
+.mobile-checkmark i {
+  font-size: 10px !important;
+  z-index: 21;
+}
+  .mobile-plan-card h2 {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .mobile-plan-card p {
+    font-size: 12px;
+  }
+
+  .mobile-plan-card .bg-gradient-to-r {
+    padding-top: 16px !important;
+    height: auto;
+    min-height: 64px;
+  }
+}
+
