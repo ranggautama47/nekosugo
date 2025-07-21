@@ -43,7 +43,7 @@
 ---
 
 ### **Preview**  
-![NekoSugoStream Top Up Preview](image.png)  
+![NekoSugoStream Top Up Preview](https://ranggautama47.github.io/nekosugo/)  
 
 ---
 
