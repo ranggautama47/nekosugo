@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iWallet Digital</title>
+    <link rel="stylesheet" href="ui/mode_bar.css">
+    <link rel="stylesheet" href="ui/dasboard_koin.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"> 
+    <script src="js_koin/riwayat.js" defer></script>
+    <script src="js_koin/mode_bar.js" defer></script>
+    <script src="js_koin/action.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation desktop -->
+   <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img alt="NekoSugoStream" height="40" src="asset/neko.png" width="40" />
+                <span class="sidebar-text text-xl text-blue-500 font-bold">NekoSugoStream</span>
+            </div>
+        </div>
+        
+         <button class="toggle-btn" id="sidebarToggle">
+            <i class="fa-solid fa-sliders" id="toggleIcon"></i>
+        </button>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section">
+                <h4 class="sidebar-title">Beranda</h4>
+                <ul>
+                    <li class="active">
+                        <a href="dasboard_koin.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard Koin</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-palette"></i>
+                            <span>Gaya Menu</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Sistem Desain</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+          <h4 class="sidebar-title">Halaman</h4>
+          <ul>
+            <li>
+              <a href="#" class="flex items-center">
+                <i class="fas fa-users"></i>
+                <span>Pengguna</span>
+              </a>
+            </li>
+            <li>
+              <a href="dasboard_topup.html" class="flex items-center">
+                <img src="asset/topup.png" alt="topup" class="icon-image">
+                <span>Isi Saldo</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+            
+ <div class="sidebar-footer">
+  <div class="user-profile">
+  <img src="asset/fix_shiba_inu-removebg-preview.png" alt="Profil" class="profile-image">
+  <span class="profile-text">Profil</span>
+</div>
+  <ul>
+    <li><a href="#"><i class="fas fa-cog"></i> <span>Umum</span></a></li>
+    <li><a href="#"><i class="fas fa-sliders-h"></i> <span>Pengaturan</span></a></li>
+    <li><a href="#"><i class="fas fa-question-circle"></i> <span>Bantuan</span></a></li>
+    <li id="darkModeToggle">
+  <a  class="flex items-center gap-2"> 
+    <i class="fas fa-moon" id="themeIcon"></i>
+    <span id="themeText">Mode Gelap</span>
+  </a>
+</li>
+  </ul>
+</div>
+</nav>
+</div>
+        
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Header -->
+            <header>
+                <h1>dompet koin</h1>
+            </header>
+            <!-- Saldo -->
+            <div class="balance-card">
+                <div class="balance-info">
+                    <p class="text-gray-400 mb-1">koin Anda</p>
+                    <div class="balance-display">
+                        <!-- Hanya satu yang tampil pada saat bersamaan -->
+                        <h2 id="hidden-balance" class="text-2xl font-bold">*******</h2>
+                        <h2 id="coin-balance" class="hidden flex items-center gap-2">
+                            <img src="asset/lutfy.png" alt="koin" class="coin-logo">
+                            <span class="text-2xl font-bold">1.250.000</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="balance-actions">
+                    <button id="show-balance" class="p-2 rounded-full bg-gray-700 hover:bg-gray-600">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Quick Actions -->
+            <div class="quick-actions grid grid-cols-4 gap-3 mt-5">
+
+                <button class="action-btn" data-target="topup-section">
+                    <i class="fas fa-coins"></i>
+                    <span>Top Up</span>
+                </button>
+                <button class="action-btn" data-target="stats-section">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Statistik Koin</span>
+                </button>
+                <button class="action-btn" data-target="voucher-section">
+                    <i class="fas fa-gift"></i>
+                    <span>Voucher Koin</span>
+                </button>
+                <button class="action-btn" data-target="faq-section">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ Koin</span>
+                </button>
+            </div>
+            <div id="dynamic-section" class="mt-5 hidden bg-gray-800 p-4 rounded-lg">
+                <div id="topup-section" class="hidden">
+                    <h3 class="text-lg font-bold mb-2">💳 Top Up Koin</h3>
+                    <p class="text-gray-300">Isi saldo koin Anda dengan metode pembayaran yang tersedia.</p>
+                    <p class="text-gray-300">Silakan klik icon isi saldo di halaman atau Anda dapat langsung mengklik ikon berikut</p>
+                    <div class="flex items-center gap-2 text-gray-300 mt-2">
+                        <a href="dasboard_topup.html" class="hover:opacity-80 transition-opacity">
+                            <img src="asset/animationtopup.gif" alt="Isi Saldo" class="w-6 h-6 object-contain hover-grow transition-transform">
+                        </a>
+                    </div>
+                </div>
+                <div id="stats-section" class="hidden p-4 bg-gray-700 rounded-lg">
+                    <h3 class="text-lg font-bold mb-2">📈 Statistik Penggunaan Koin</h3>
+                    <p class="text-gray-300 mb-4">Di sini akan tampil grafik atau ringkasan penggunaan koin kamu.</p>
+                    <div class="chart-container" style="position: relative; height:300px; width:100%">
+                        <!-- Chart akan dimasukkan di sini oleh JavaScript -->
+                    </div>
+                    <div class="flex justify-between mt-4 text-sm text-gray-300">
+                        <div class="flex items-center">
+                            <span class="inline-block w-3 h-3 bg-green-400 mr-1"></span>
+                            <span>Top Up</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="inline-block w-3 h-3 bg-red-400 mr-1"></span>
+                            <span>Penggunaan</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="voucher-section" class="hidden">
+                    <h3 class="text-lg font-bold mb-2">🎁 Voucher/Promo Koin</h3>
+                    <p class="text-gray-300">Cek promo menarik untuk pembelian koin dengan harga spesial!</p>
+                </div>
+                <div id="faq-section" class="hidden">
+                    <h3 class="text-lg font-bold mb-2">❓ FAQ Tentang Koin</h3>
+                    <p class="text-gray-300">Koin hanya bisa digunakan dalam platform dan tidak dapat diuangkan atau ditransfer.</p>
+                </div>
+                <button id="close-section" class="mt-4 w-full bg-red-600 hover:bg-red-700 text-white p-2 rounded">
+                    Tutup
+                </button>
+            </div>
+            <!-- Riwayat Transaksi -->
+            <div class="transaction-history">
+                <h3>Riwayat Transaksi</h3>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="topup">Pembelian</button>
+                    <button class="tab-btn" data-tab="purchase">penggunaan</button>
+                </div>
+                <div class="tab-content" id="topup">
+                    <ul class="transaction-list" id="topup-list">
+                        <!-- Data akan diisi oleh JavaScript -->
+                    </ul>
+                </div>
+                <div class="tab-content hidden" id="purchase">
+                    <ul class="transaction-list" id="purchase-list">
+                        <!-- Data akan diisi oleh JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   <script>
+   document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const isMobile = window.innerWidth < 769;
+    
+    toggleBtn.addEventListener('click', function() {
+        if (isMobile) {
+            sidebar.classList.toggle('sidebar-active');
+        } else {
+            sidebar.classList.toggle('sidebar-collapsed');
+            
+            // Animasi smoother untuk teks
+            const allTextElements = sidebar.querySelectorAll('.sidebar-text, .sidebar-title, .profile-text, .sidebar-nav span');
+            allTextElements.forEach(el => {
+                if (sidebar.classList.contains('sidebar-collapsed')) {
+                    el.style.opacity = '0';
+                    setTimeout(() => el.style.display = 'none', 300);
+                } else {
+                    el.style.display = '';
+                    setTimeout(() => el.style.opacity = '1', 10);
+                }
+            });
+        }
+        
+        // Rotasi ikon yang lebih smooth
+        if (toggleIcon.classList.contains('fa-sliders')) {
+            toggleIcon.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                toggleIcon.classList.remove('fa-sliders');
+                toggleIcon.classList.add('material-symbols-outlined');
+                toggleIcon.textContent = 'swipe_left';
+                toggleIcon.style.transform = '';
+                // BARU: Tambahkan margin untuk swipe_left
+                toggleIcon.style.marginLeft = "4px";
+                toggleIcon.style.fontSize = "20px";
+            }, 150);
+        } else {
+            toggleIcon.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                toggleIcon.classList.remove('material-symbols-outlined');
+                toggleIcon.classList.add('fa-solid', 'fa-sliders');
+                toggleIcon.textContent = '';
+                toggleIcon.style.transform = '';
+                // BARU: Reset margin untuk fa-sliders
+                toggleIcon.style.marginLeft = "0";
+                toggleIcon.style.fontSize = "";
+            }, 150);
+        }
+    });
+    
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 769 && sidebar.classList.contains('sidebar-active')) {
+            sidebar.classList.remove('sidebar-active');
+        }
+    });
+});
+</script>
+</body>
+</html>
