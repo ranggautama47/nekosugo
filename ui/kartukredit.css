@@ -1,0 +1,394 @@
+
+
+/* ====== Base Styles ====== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* ====== Popup Container ====== */
+#credit-card-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.popup-content {
+  width: 380px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: #333;
+}
+
+.popup-content::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* ====== Popup Header ====== */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.popup-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #333;
+  transform: scale(1.1);
+}
+
+/* ====== Form Section ====== */
+.form-section {
+  padding: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333 !important;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #333;
+  background-color: white;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+.card-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ====== Timer ====== */
+.timer-bar {
+  background-color: #1a73e8;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ====== Security Section ====== */
+.security-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.security-guarantee {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.security-guarantee img {
+  height: 100%;
+  width: auto;
+  filter: contrast(1.2) brightness(1.1);
+}
+
+.card-brands {
+  display: flex;
+  gap: 8px;
+}
+
+.card-brands img {
+  height: 24px;
+  width: auto;
+}
+
+/* ====== Toggle Switch ====== */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  position: relative;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #1a73e8;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(16px);
+}
+
+.toggle-label {
+  font-size: 14px;
+}
+
+.info-icon {
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ====== Select & Summary ====== */
+.installment-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: white;
+  appearance: none;
+
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+.payment-summary {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 16px 0;
+}
+
+.payment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.payment-label {
+  font-size: 14px;
+  color: #666 !important;
+}
+
+.payment-amount {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e67e22;
+}
+
+.detail-link {
+  color: #1a73e8;
+  font-size: 13px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.detail-link i {
+  font-size: 12px;
+}
+
+/* ====== Coin Info ====== */
+.coin-info {
+  display: none;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 8px;
+}
+
+/* ====== Pay Button ====== */
+.pay-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.3s;
+}
+
+.pay-button:hover {
+  background-color: #1565c0;
+}
+
+.pay-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* ====== CVV Popup ====== */
+.cvv-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+.cvv-popup-content {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  width: 90%;
+  max-width: 300px;
+  position: relative;
+}
+
+.cvv-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+}
+
+.cvv-popup img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+/* ====== Save Info Popup ====== */
+.save-info-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 12px;
+  width: 200px;
+  z-index: 10;
+  display: none;
+}
+
+/* ====== Trigger Button ====== */
+.trigger-button {
+  padding: 12px 24px;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.trigger-button:hover {
+  background-color: #1565c0;
+}
+
+/* ====== Channel Grid (Animation) ====== */
+.channel-grid {
+  overflow: hidden;
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.channel-grid.open {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* ====== Utility ====== */
+.popup-hidden {
+  display: none !important;
+}

@@ -1,0 +1,327 @@
+/* Toggle Button Positioning FIXED */
+.toggle-btn {
+  position: fixed;
+  left: 240px; /* Posisi di samping sidebar */
+  top: 1.5rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1100;
+  transition: all 0.3s ease;
+}
+
+/* Saat sidebar collapsed */
+.sidebar-collapsed .toggle-btn {
+  left: 75px; /* Posisi saat sidebar menutup */
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 768px) {
+  .toggle-btn {
+    left: 10px;
+    top: 10px;
+  }
+}
+/* Atur icon material-symbols-outlined */
+.material-symbols-outlined {
+  font-size: 20px !important; /* Ukuran icon */
+  margin-left: 2px; /* Geser sedikit ke kanan */
+}
+.sidebar-collapsed .toggle-btn {
+  left: 80px !important; /* Jarak lebih dari logo */
+  transform: translateX(5px); /* Geser sedikit ke kanan */
+}
+/* ===== BASE SIDEBAR STYLES ===== */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 280px;
+  background-color: var(--sidebar-bg, #1a1a1a);
+  color: var(--sidebar-text, #e0e0e0);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-header {
+  border-bottom: 1px solid #333;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-container img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.logo-container span {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #3b82f6;
+  white-space: nowrap;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+}
+
+.sidebar-section {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-title {
+  color: var(--sidebar-text-secondary, #aaaaaa);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 0 1.25rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav li a:hover {
+  background-color: var(--sidebar-hover-bg, #333);
+}
+
+.sidebar-nav li a i {
+  width: 20px;
+  margin-right: 12px;
+  text-align: center;
+}
+
+.sidebar-nav li.active a {
+  background-color: var(--primary, #6200ee);
+  color: white;
+}
+
+/* Toggle Button Styles */
+.toggle-btn {
+  position: fixed;
+  left: 250px; /* Posisi tepat di ujung sidebar */
+  top: 1.5rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1100;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #f3f4f6;
+  transform: scale(1.1);
+}
+
+.toggle-btn i {
+  color: #4b5563;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+/* Saat sidebar collapsed */
+.sidebar-collapsed .toggle-btn {
+  left: 7px; /* Dijauhkan dari logo */
+  transform: none;
+}
+
+/* Collapsed State */
+.sidebar-collapsed {
+  width: 80px !important;
+}
+
+.sidebar-collapsed .sidebar-text,
+.sidebar-collapsed .sidebar-title,
+.sidebar-collapsed .profile-text {
+  display: none;
+}
+
+.sidebar-collapsed .logo-container span {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-nav li a {
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.sidebar-collapsed .sidebar-nav li a i {
+  margin-right: 0;
+}
+
+.sidebar-collapsed .toggle-btn {
+  left: 65px;
+  right: auto;
+}
+
+/* Main Content Adjustments */
+@media (max-width: 768px) {
+  .toggle-btn {
+    left: 10px;
+    top: 10px;
+  }
+}
+
+.sidebar-collapsed ~ .main-content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -280px;
+  }
+  
+  .sidebar.sidebar-active {
+    left: 0;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toggle-btn {
+    left: 10px;
+    right: auto;
+    top: 10px;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  .sidebar-active ~ .main-content {
+    transform: translateX(280px);
+    overflow: hidden;
+  }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  --sidebar-bg: #0d0d0d;
+  --sidebar-text: #ffffff;
+  --sidebar-text-secondary: #cccccc;
+  --sidebar-hover-bg: #292929;
+}
+
+body.light-mode {
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #333333;
+  --sidebar-text-secondary: #666666;
+  --sidebar-hover-bg: #f0f0f0;
+}
+
+/* User Profile Section */
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.user-profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary, #6200ee);
+}
+
+.user-profile span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--sidebar-text);
+  margin-top: 0.5rem;
+}
+
+/* Footer Menu */
+.sidebar-footer {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 1.25rem;
+  margin-top: auto;
+}
+
+.sidebar-footer ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar-footer ul li a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.sidebar-footer ul li a:hover {
+  background-color: var(--sidebar-hover-bg, #333);
+}
+
+.sidebar-footer ul li a i {
+  width: 24px;
+  text-align: center;
+  margin-right: 0.75rem;
+}
+/* Atur ukuran icon image agar konsisten dengan font awesome */
+.sidebar-nav li a .icon-image {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px; /* Jarak yang sama dengan fa-users */
+  object-fit: contain;
+}
+
+/* Pastikan konsistensi dengan font awesome */
+.sidebar-nav li a i {
+  width: 20px;
+  margin-right: 12px; /* Sama dengan icon-image */
+  text-align: center;
+  flex-shrink: 0;
+}

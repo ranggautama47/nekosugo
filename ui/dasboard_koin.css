@@ -1,0 +1,707 @@
+/* Dark Mode Styles */
+body.dark-mode,
+body.dark-mode .sidebar,
+body.dark-mode .main-content {
+  --primary: #bb86fc;
+  --primary-light: #d9bfff;
+  --background: #121212;
+  --card: #1e1e1e;
+  --text: #ffffff;
+  --text-secondary: #aaaaaa;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --sidebar-bg: #0d0d0d;
+  --sidebar-text: #ffffff;
+  --sidebar-text-secondary: #cccccc;
+  --sidebar-hover-bg: #292929;
+}
+
+body.light-mode,
+body.light-mode .sidebar,
+body.light-mode .main-content {
+  --primary: #6200ee;
+  --primary-light: #9e47ff;
+  --background: #f5f5f5;
+  --card: #ffffff;
+  --text: #333333;
+  --text-secondary: #666666;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --sidebar-bg: #1a1a1a;
+  --sidebar-text: #e0e0e0;
+  --sidebar-text-secondary: #aaaaaa;
+  --sidebar-hover-bg: #333333;
+}
+body,
+.sidebar,
+.main-content,
+.balance-card,
+.action-btn,
+.transaction-history,
+#dynamic-section {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+/* Pastikan semua komponen menggunakan CSS variables */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Sidebar Mobile */
+
+.mobile-toggle-btn {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: #333;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+  z-index: 1050;
+  cursor: pointer;
+}
+
+/* Main Content */
+.main-content {
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+  background-color: var(--background);
+    color: var(--text);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* Ketika sidebar aktif */
+.sidebar-active ~ .main-content {
+  transform: translateX(280px);
+  width: calc(100% - 280px);
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (min-width: 769px) {
+  .sidebar.mobile-view {
+    display: none !important;
+  }
+  
+  .sidebar.desktop-view {
+    display: block;
+  }
+}
+/* Komponen lainnya (balance card, quick actions, dll) */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.balance-card {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.action-btn {
+  background: var(--card);
+  border: none;
+  padding: 12px 5px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+
+/* Lanjutan dari action-btn dan komponen lainnya */
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn i {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: var(--primary);
+  transition: color 0.2s;
+}
+
+.action-btn:hover i {
+  color: var(--primary-light);
+}
+
+.action-btn span {
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+/* Transaction History Styles */
+.transaction-history {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  margin-top: 20px;
+}
+
+.transaction-history h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: var(--primary);
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn {
+  padding: 8px 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: 600;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tab-btn:hover {
+  color: var(--text);
+}
+
+.tab-btn.active {
+  color: var(--primary);
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  animation: tabUnderline 0.3s ease-out;
+}
+
+@keyframes tabUnderline {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.transaction-list {
+  list-style: none;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s;
+}
+
+.transaction-item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.transaction-item:last-child {
+  border-bottom: none;
+}
+
+.transaction-details {
+  flex: 1;
+}
+
+.transaction-title {
+  font-weight: 600;
+  margin-bottom: 3px;
+  color: var(--text);
+}
+
+.transaction-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.transaction-amount {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.transaction-amount.income {
+  color: #4caf50;
+}
+
+.transaction-amount.expense {
+  color: #f44336;
+}
+
+/* Dynamic Section Styles */
+#dynamic-section {
+  background-color: var(--card);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: var(--shadow);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#dynamic-section h3 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#dynamic-section h3 i {
+  font-size: 20px;
+}
+
+#dynamic-section p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+#close-section {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+#close-section:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Balance Display Styles */
+.balance-display {
+  position: relative;
+  min-height: 40px;
+}
+
+#hidden-balance {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+#coin-balance {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.coin-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.coin-logo:hover {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.balance-actions button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.balance-actions button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .transaction-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .action-btn {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .action-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .sidebar.desktop-view {
+    display: none !important;
+  }
+  
+  .sidebar.mobile-view {
+    display: block;
+  }
+  
+  .sidebar-header span {
+    display: inline !important; /* Pastikan teks muncul di mobile */
+  }
+}
+
+/* Utility Classes */
+.hidden {
+  display: none !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Smooth transitions for theme switching */
+body, .balance-card, .action-btn, 
+.transaction-history, #dynamic-section {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Main Content Adjustments */
+.main-content {
+  width: calc(100% - 280px);
+  min-height: 100vh;
+  padding: 1.5rem;
+  background-color: var(--background);
+  transition: all 0.3s ease;
+  position: relative;
+  margin-left: 280px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Desktop Layout */
+@media (min-width: 1024px) {
+  .main-content {
+    padding: 2rem 3rem;
+  }
+  
+  .container {
+    max-width: 900px;
+  }
+}
+
+/* Tablet Layout */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .main-content {
+    width: calc(100% - 80px);
+    margin-left: 80px;
+    padding: 1.5rem;
+  }
+  
+  .container {
+    max-width: 700px;
+  }
+}
+
+/* Mobile Layout */
+@media (max-width: 767px) {
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+    padding: 1rem;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+  
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .balance-card {
+    padding: 1rem;
+  }
+  
+  .balance-info h2 {
+    font-size: 1.5rem;
+  }
+  
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+/* Content Styling */
+header h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.balance-card {
+  max-width: 100%;
+  margin: 0 auto 1.5rem;
+}
+
+.quick-actions {
+  max-width: 100%;
+  margin: 0 auto 1.5rem;
+}
+
+.transaction-history {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Sidebar Collapsed State */
+.sidebar-collapsed ~ .main-content {
+  width: calc(100% - 80px);
+  margin-left: 80px;
+}
+
+/* Perbaikan untuk light mode sidebar */
+body.light-mode .sidebar {
+  --sidebar-bg: #f5f5f5; /* Warna lebih terang untuk light mode */
+  --sidebar-text: #333333;
+  --sidebar-text-secondary: #666666;
+  --sidebar-hover-bg: #e0e0e0;
+}
+
+/* Warna tombol Tutup di light mode */
+body.light-mode #close-section {
+  background-color: #9e47ff;
+  color: white;
+}
+
+body.light-mode #close-section:hover {
+  background-color: #6200ee;
+}
+/* Pastikan sidebar menggunakan variabel CSS */
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+
+/* Pastikan dark mode toggle bekerja dengan benar */
+body.dark-mode .sidebar {
+  --sidebar-bg: #0d0d0d;
+  --sidebar-text: #ffffff;
+  --sidebar-text-secondary: #cccccc;
+  --sidebar-hover-bg: #292929;
+}
+
+/* iPad Layout (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-content {
+    width: calc(100% - 280px);
+    margin-left: 280px;
+    padding: 1.5rem;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .action-btn {
+    padding: 1rem 0.5rem;
+  }
+
+  .action-btn i {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .action-btn span {
+    font-size: 14px;
+  }
+
+  .balance-card {
+    padding: 1.5rem;
+  }
+
+  .transaction-history {
+    padding: 1.5rem;
+  }
+
+  #dynamic-section {
+    padding: 1.5rem;
+  }
+
+  /* Perbaikan untuk sidebar di iPad */
+  .sidebar {
+    width: 280px;
+  }
+
+  .sidebar-collapsed ~ .main-content {
+    width: calc(100% - 80px);
+    margin-left: 80px;
+  }
+
+  .sidebar-collapsed {
+    width: 80px !important;
+  }
+
+  /* Perbaikan ukuran font */
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  .balance-info h2 {
+    font-size: 2rem;
+  }
+
+  /* Perbaikan tampilan riwayat transaksi */
+  .transaction-item {
+    padding: 1rem 0;
+  }
+
+  .transaction-title {
+    font-size: 1rem;
+  }
+
+  .transaction-amount {
+    font-size: 1.1rem;
+  }
+}
+/* Tablet Layout (termasuk iPad) */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .main-content {
+    padding: 1.5rem;
+  }
+  
+  .quick-actions {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .action-btn {
+    padding: 1rem 0.5rem;
+  }
+  
+  .balance-card {
+    padding: 1.5rem;
+  }
+}
+
+/* iPad Specific Styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .sidebar {
+    width: 280px;
+  }
+  
+  .sidebar-collapsed {
+    width: 80px !important;
+  }
+  
+  .toggle-btn {
+    left: 250px;
+  }
+  
+  .sidebar-collapsed .toggle-btn {
+    left: 65px;
+  }
+  
+  .logo-container img {
+    width: 50px;
+    height: 50px;
+  }
+}
