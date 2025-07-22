@@ -57,14 +57,18 @@ const topupData = {
   ]
 };
 
-app.get("/api/topup/:method", (req, res) => {
+app.post("/api/topup/:method", (req, res) => {
   const method = req.params.method.toLowerCase();
-  if (topupData[method]) {
-    res.json(topupData[method]);
-  } else {
-    res.status(404).json({ error: "Metode pembayaran tidak ditemukan." });
-  }
+
+  // dummy success response
+  return res.json({
+    success: true,
+    order_id: "ORD" + Date.now(),
+    expires_at: new Date(Date.now() + 5 * 60000).toISOString(), // +5 menit
+    qr_code_url: `https://dummy.qr/${method}`
+  });
 });
+
 
 module.exports = app;
 app.listen(port, () => {
