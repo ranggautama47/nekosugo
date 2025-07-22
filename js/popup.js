@@ -1,7 +1,11 @@
 /* popup.js - Konfirmasi top up (QRIS, Bank Transfer, Kartu Kredit) */
 (function () {
   let selectedData = null;
-
+  
+ const API_BASE = location.hostname === "localhost"
+    ? "http://localhost:8000/api/topup"
+    : "https://nekosugo.vercel.app/api/topup";
+  
   document.addEventListener("DOMContentLoaded", function () {
     const confirmBtn = document.getElementById("confirmBtn");
     const confirmModal = document.getElementById("confirmModal");
@@ -59,9 +63,7 @@
 
       if (!selectedData) return;
 
-      const API_BASE = "https://nekosugo.vercel.app/api/topup";
-    fetch(`${API_BASE}/${selectedData.channel}`, {
-     {
+     etch(`${API_BASE}/${selectedData.channel}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -72,22 +74,22 @@
           price: parseInt(selectedData.price)
         })
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          selectedData.order_id = data.order_id;
-          selectedData.expires_at = data.expires_at;
-          selectedData.qr_code_url = data.qr_code_url;
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            selectedData.order_id = data.order_id;
+            selectedData.expires_at = data.expires_at;
+            selectedData.qr_code_url = data.qr_code_url;
 
-          window.dispatchEvent(new CustomEvent("topupConfirmed", { detail: selectedData }));
-        } else {
-          alert("Gagal melakukan top-up. Silakan coba lagi.");
-        }
-      })
-      .catch(err => {
-        console.error("Gagal fetch:", err);
-        alert("Terjadi kesalahan saat menghubungi server.");
-      });
+            window.dispatchEvent(new CustomEvent("topupConfirmed", { detail: selectedData }));
+          } else {
+            alert("Gagal melakukan top-up. Silakan coba lagi.");
+          }
+        })
+        .catch(err => {
+          console.error("Gagal fetch:", err);
+          alert("Terjadi kesalahan saat menghubungi server.");
+        });
     });
 
     // 💡 Letakkan ini di luar tombol agar tidak didaftarkan ulang tiap klik
