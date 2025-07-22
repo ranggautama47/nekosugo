@@ -59,7 +59,9 @@
 
       if (!selectedData) return;
 
-      fetch("http://localhost:8000/api/topup", {
+      const API_BASE = "https://nekosugo.vercel.app/api/topup";
+    fetch(`${API_BASE}/${selectedData.channel}`, {
+     {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
