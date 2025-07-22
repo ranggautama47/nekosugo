@@ -63,7 +63,7 @@
 
       if (!selectedData) return;
 
-     etch(`${API_BASE}/${selectedData.channel}`, {
+     fetch(`${API_BASE}/${selectedData.channel}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
